@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+@if(TempData==null)
+{
+    <h2>@TempData["sucees"] != null</h2>
+}
+@* <partial name="_notification" /> *@
+<div class="conteiner p-3">
+    <div class="row-pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; create  New  Category
+            </a>
+        </div>
+    </div>
+
+
+<table class="table table-striped table table-bordered" style="width:100%">
+    <thead> 
+    <tr>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Display Orders
+        </th>
+    </tr>    
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+<tr>
+    <td width="50%">
+        @obj.Name
+    </td>
+                <td width="50%">
+                    @obj.DisplayOrder
+                </td>
+                <td>
+                    <div class="w-75 btn-group role=group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
+                            <a asp-controller="Category" asp-action="DeletePOST" asp-route-id="@obj.Id" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i>Delete</a>
+                    </div>
+                </td>
+</tr>
+        }
+    </tbody>
+</table>
+</div>
